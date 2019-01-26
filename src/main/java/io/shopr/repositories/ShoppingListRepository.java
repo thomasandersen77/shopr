@@ -1,6 +1,6 @@
-package io.shopr.shopr.repositories;
+package io.shopr.repositories;
 
-import io.shopr.shopr.entities.ShoppingList;
+import io.shopr.entities.ShoppingList;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

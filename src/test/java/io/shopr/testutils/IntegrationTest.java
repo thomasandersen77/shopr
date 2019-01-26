@@ -1,6 +1,6 @@
-package io.shopr.shopr.testutils;
+package io.shopr.testutils;
 
-import io.shopr.shopr.ShoprApplication;
+import io.shopr.ShoprApplication;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;

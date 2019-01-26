@@ -1,4 +1,4 @@
-package io.shopr.shopr;
+package io.shopr;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

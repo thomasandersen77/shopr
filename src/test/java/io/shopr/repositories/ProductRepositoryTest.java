@@ -1,7 +1,7 @@
-package io.shopr.shopr.repositories;
+package io.shopr.repositories;
 
-import io.shopr.shopr.entities.Category;
-import io.shopr.shopr.entities.Product;
+import io.shopr.entities.Category;
+import io.shopr.entities.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

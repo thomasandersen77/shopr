@@ -1,6 +1,6 @@
-package io.shopr.shopr.controllers;
+package io.shopr.controllers;
 
-import io.shopr.shopr.entities.Product;
+import io.shopr.entities.Product;
 
 import java.util.ArrayList;
 import java.util.List;

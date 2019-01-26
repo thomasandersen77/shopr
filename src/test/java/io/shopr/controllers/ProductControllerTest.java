@@ -1,8 +1,8 @@
-package io.shopr.shopr.controllers;
+package io.shopr.controllers;
 
-import io.shopr.shopr.entities.Category;
-import io.shopr.shopr.entities.Product;
-import io.shopr.shopr.testutils.IntegrationTest;
+import io.shopr.entities.Category;
+import io.shopr.entities.Product;
+import io.shopr.testutils.IntegrationTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,9 @@ public class ProductControllerTest {
     @Test
     @Transactional
     public void createProduct() {
-        ResponseEntity<Long> response = template.postForEntity("/product", new Product("Epler", 15.00, new Category("Frukt"), 6), Long.class);
+        ResponseEntity<Long> response = template.postForEntity("/product",
+                new Product("Epler", 15.00, new Category("Frukt"), 6),
+                Long.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().intValue() > 0L);
 

@@ -1,16 +1,13 @@
-package io.shopr.shopr.controllers;
+package io.shopr.controllers;
 
-import io.shopr.shopr.entities.Product;
-import io.shopr.shopr.repositories.ProductRepository;
+import io.shopr.entities.Product;
+import io.shopr.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 @RestController
 public class ProductController {
