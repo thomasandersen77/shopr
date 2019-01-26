@@ -3,7 +3,7 @@ package io.shopr.entities;
 import javax.persistence.*;
 
 @Entity
-public class ProductItem {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,17 +21,17 @@ public class ProductItem {
     @Column
     private Integer numberOfItems;
 
-    public ProductItem() {
+    public Product() {
 
     }
 
-    public ProductItem(String name, double price, Category category) {
+    public Product(String name, double price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
     }
 
-    public ProductItem(String name, double price, Category category, Integer numberOfItems) {
+    public Product(String name, double price, Category category, Integer numberOfItems) {
         this(name, price, category);
         this.numberOfItems = numberOfItems;
     }

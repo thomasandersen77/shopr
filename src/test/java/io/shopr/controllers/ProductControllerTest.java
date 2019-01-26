@@ -1,9 +1,9 @@
 package io.shopr.controllers;
 
 import io.shopr.ShoprApplication;
+import io.shopr.controllers.transferobjects.ProductListDto;
 import io.shopr.entities.Category;
-import io.shopr.entities.ProductItem;
-import io.shopr.testutils.EnableIntegrationTest;
+import io.shopr.entities.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import static org.junit.Assert.*;
 @AutoConfigureDataJpa
 @AutoConfigureTestDatabase
 @AutoConfigureTestEntityManager
-public class ProductItemControllerTest {
+public class ProductControllerTest {
 
     @Autowired
     TestRestTemplate template;
@@ -37,44 +37,44 @@ public class ProductItemControllerTest {
     @Transactional
     public void createProduct() {
         ResponseEntity<Long> response = template.postForEntity("/product",
-                new ProductItem("Epler", 15.00, new Category("Frukt"), 6),
+                new Product("Epler", 15.00, new Category("Frukt"), 6),
                 Long.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().intValue() > 0L);
 
-        ProductItem productItem = em.find(ProductItem.class, response.getBody());
-        assertNotNull(productItem);
-        assertEquals("Epler", productItem.getName());
+        Product product = em.find(Product.class, response.getBody());
+        assertNotNull(product);
+        assertEquals("Epler", product.getName());
     }
 
     @Test
     @Transactional
     public void getProductList() {
-        em.persist(new ProductItem());
-        em.persist(new ProductItem());
-        em.persist(new ProductItem());
-        em.persist(new ProductItem());
-        em.persist(new ProductItem());
+        em.persist(new Product());
+        em.persist(new Product());
+        em.persist(new Product());
+        em.persist(new Product());
+        em.persist(new Product());
         em.getEntityManager().getTransaction().commit();
 
-        ResponseEntity<ProductList> response = template.getForEntity("/product", ProductList.class);
+        ResponseEntity<ProductListDto> response = template.getForEntity("/product", ProductListDto.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(5 <= response.getBody().getProductItems().size());
+        assertTrue(5 <= response.getBody().getProducts().size());
     }
 
 
     @Test
     @Transactional
     public void getProductById() {
-        Long id = em.persistAndFlush(new ProductItem("test", 100, new Category("category"))).getId();
+        Long id = em.persistAndFlush(new Product("test", 100, new Category("category"))).getId();
         em.getEntityManager().getTransaction().commit();
 
-        ResponseEntity<ProductItem> response = template.getForEntity("/product/{id}", ProductItem.class, id);
+        ResponseEntity<Product> response = template.getForEntity("/product/{id}", Product.class, id);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        ProductItem productItem = response.getBody();
-        assertNotNull(productItem);
-        assertEquals(productItem.getId().intValue(), id.intValue());
-        assertEquals("test", productItem.getName());
-        assertEquals("category", productItem.getCategory().getName());
+        Product product = response.getBody();
+        assertNotNull(product);
+        assertEquals(product.getId().intValue(), id.intValue());
+        assertEquals("test", product.getName());
+        assertEquals("category", product.getCategory().getName());
     }
 }

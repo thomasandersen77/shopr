@@ -2,8 +2,8 @@ package io.shopr.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.shopr.controllers.transferobjects.CategoryRequestDto;
 import io.shopr.entities.Category;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -39,13 +40,16 @@ public class CategoryControllerTest {
     @Test
     public void create_new_catgory() throws Exception {
 
-        mockMvc.perform(
+        MvcResult mvcResult = mockMvc.perform(
                 post("/category")
-                .content(toJson(new CategoryRequest("test")))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andDo(print())
+                        .content(toJson(new CategoryRequestDto("test")))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(content().json("{\"name\":\"test\"}", false));
+                .andExpect(content().json("{\"name\":\"test\"}", false))
+                .andReturn();
+
+        System.err.println("" + mvcResult.getResponse().getContentAsString());
+
         Category category = em.getEntityManager().createQuery("from Category where name = :name", Category.class)
                 .setParameter("name", "test")
                 .getSingleResult();

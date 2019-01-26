@@ -1,5 +1,6 @@
 package io.shopr.controllers;
 
+import io.shopr.controllers.transferobjects.CategoryRequestDto;
 import io.shopr.entities.Category;
 import io.shopr.repositories.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class CategoryController {
     }
 
     @PostMapping("category")
-    public ResponseEntity<Category> createCategory(@RequestBody CategoryRequest request) {
+    public ResponseEntity<Category> createCategory(@RequestBody CategoryRequestDto request) {
         Category category = categoryRepository.save(new Category(request.getName()));
         return new ResponseEntity<>(category, HttpStatus.OK);
     }
