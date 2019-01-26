@@ -21,13 +21,13 @@ public class ShoppingList {
     private Date updateTimestamp;
 
     @OneToMany
-    private Set<Product> products;
+    private Set<ProductItem> productItems;
 
     public ShoppingList() {
         this.createdDate = LocalDateTime.now();
     }
 
-    public void addProduct(Product product) {
-        products.add(product);
+    public void addProduct(ProductItem productItem) {
+        productItems.add(productItem);
     }
 }

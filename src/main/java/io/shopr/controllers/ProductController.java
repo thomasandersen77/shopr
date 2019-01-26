@@ -1,6 +1,6 @@
 package io.shopr.controllers;
 
-import io.shopr.entities.Product;
+import io.shopr.entities.ProductItem;
 import io.shopr.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,13 +20,13 @@ public class ProductController {
     }
 
     @PostMapping("product")
-    public Long createProduct(@RequestBody Product product) {
-        product = repository.save(product);
-        log.info("Created Product. Id = {}, Name = {}, category = {}",
-                product.getId(),
-                product.getName(),
-                product.getCategory().getName());
-        return product.getId();
+    public Long createProduct(@RequestBody ProductItem productItem) {
+        productItem = repository.save(productItem);
+        log.info("Created ProductItem. Id = {}, Name = {}, category = {}",
+                productItem.getId(),
+                productItem.getName(),
+                productItem.getCategory().getName());
+        return productItem.getId();
     }
 
     @GetMapping("product")
@@ -35,8 +35,8 @@ public class ProductController {
     }
 
     @GetMapping("product/{id}")
-    public Product getProductById(@PathVariable("id") Long id) {
-        Product product = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "No product with id: " + id));
-        return product;
+    public ProductItem getProductById(@PathVariable("id") Long id) {
+        ProductItem productItem = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "No productItem with id: " + id));
+        return productItem;
     }
 }

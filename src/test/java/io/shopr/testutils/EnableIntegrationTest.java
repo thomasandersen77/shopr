@@ -16,5 +16,5 @@ import java.lang.annotation.*;
 @AutoConfigureDataJpa
 @AutoConfigureTestDatabase
 @AutoConfigureTestEntityManager
-public @interface IntegrationTest {
+public @interface EnableIntegrationTest {
 }
