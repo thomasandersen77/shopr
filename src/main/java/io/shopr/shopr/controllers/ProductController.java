@@ -5,9 +5,12 @@ import io.shopr.shopr.repositories.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 @RestController
 public class ProductController {
@@ -30,12 +33,13 @@ public class ProductController {
     }
 
     @GetMapping("product")
-    public List<Product> getProductList() {
-        return repository.findAll();
+    public ProductList getProductList() {
+        return new ProductList(repository.findAll());
     }
 
     @GetMapping("product/{id}")
     public Product getProductById(@PathVariable("id") Long id) {
-        return repository.getOne(id);
+        Product product = repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT, "No product with id: " + id));
+        return product;
     }
 }
