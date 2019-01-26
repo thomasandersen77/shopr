@@ -22,18 +22,23 @@ public class ProductControllerTest {
     @Autowired
     TestRestTemplate template;
     @Autowired
-    TestEntityManager testEntityManager;
+    TestEntityManager em;
 
     @Test
     public void createProduct() {
         ResponseEntity<Long> response = template.postForEntity("/product", new Product("Epler", 15.00, new Category("Frukt"), 6), Long.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().intValue() > 0L);
+
+        Product product = em.find(Product.class, response.getBody());
+        assertNotNull(product);
+        assertEquals("Epler", product.getName());
+
     }
 
     @Test
     public void getProductList() {
-        assertNotNull(testEntityManager);
+        assertNotNull(em);
     }
 
     @Test
