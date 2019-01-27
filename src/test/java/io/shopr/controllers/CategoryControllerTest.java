@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.Assert.assertEquals;
@@ -40,20 +39,16 @@ public class CategoryControllerTest {
     @Test
     public void create_new_catgory() throws Exception {
 
-        MvcResult mvcResult = mockMvc.perform(
-                post("/category")
+        mockMvc.perform(post("/category")
                         .content(toJson(new CategoryRequestDto("test")))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(content().json("{\"name\":\"test\"}", false))
                 .andReturn();
 
-        System.err.println("" + mvcResult.getResponse().getContentAsString());
-
         Category category = em.getEntityManager().createQuery("from Category where name = :name", Category.class)
                 .setParameter("name", "test")
                 .getSingleResult();
-        assertNotNull(category);
         assertEquals("test", category.getName());
     }
 
