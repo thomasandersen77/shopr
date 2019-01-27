@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import javax.persistence.EntityManagerFactory;
 import java.util.Objects;
 
-//@AutoConfigureTestEntityManager
 @Configuration
 @ConditionalOnClass({ EntityManagerFactory.class })
 public class TestConfig {

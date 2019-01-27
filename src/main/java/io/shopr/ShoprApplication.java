@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
 
 import static java.util.stream.Stream.of;
 
@@ -19,6 +18,5 @@ public class ShoprApplication {
 		of(context.getEnvironment().getActiveProfiles())
 				.forEachOrdered(profile -> log.info("Started application with profile = [{}]", profile));
 	}
-
 }
 

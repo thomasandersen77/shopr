@@ -7,6 +7,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Comparator;
+
+import static java.util.Comparator.*;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -26,9 +29,12 @@ public class ShoppingListTest {
         shoppingList = em.persistAndFlush(shoppingList);
         ShoppingList shoppingListPersisted = em.find(ShoppingList.class, shoppingList.getId());
         assertEquals(shoppingListPersisted.getId(), shoppingList.getId());
+
         shoppingListPersisted.getProducts()
+                .stream()
+                .sorted(comparing(Product::getId))
                 .forEach(product -> {
-                    System.err.println("PRODUCT_ID: " + product.getId() + " NAME: " + product.getName() +  " CATEGORY: " + product.getCategory().getName());
+                    System.out.println(product);
                 });
     }
 }

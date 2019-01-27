@@ -26,9 +26,9 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {ShoprApplication.class, TestConfig.class})
-@AutoConfigureDataJpa
-@AutoConfigureTestDatabase
-@AutoConfigureTestEntityManager
+//@AutoConfigureDataJpa
+//@AutoConfigureTestDatabase
+//@AutoConfigureTestEntityManager
 @Transactional
 public class ProductControllerTest {
 

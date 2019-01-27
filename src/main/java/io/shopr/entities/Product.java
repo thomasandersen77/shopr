@@ -1,8 +1,11 @@
 package io.shopr.entities;
 
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
+@ToString
 public class Product {
 
     @Id
