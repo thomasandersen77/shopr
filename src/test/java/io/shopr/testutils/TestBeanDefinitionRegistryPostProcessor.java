@@ -12,20 +12,20 @@ import org.springframework.stereotype.Component;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-@Component
+//@Component
 public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        Stream.of(registry.getBeanDefinitionNames())
-                .sorted(Comparator.naturalOrder())
-                .forEach(System.err::println);
         if(registry instanceof ConfigurableListableBeanFactory) {
             registry.removeBeanDefinition("categoryController");
             RootBeanDefinition beanDefinition = new RootBeanDefinition(CategoryController.class);
             beanDefinition.setPrimary(true);
             beanDefinition.setAutowireCandidate(true);
-            registry.registerBeanDefinition("customCategoryController", beanDefinition);
+            registry.registerBeanDefinition("categoryController", beanDefinition);
         }
+        Stream.of(registry.getBeanDefinitionNames())
+                .sorted(Comparator.naturalOrder())
+                .forEach(System.err::println);
     }
 
     @Override

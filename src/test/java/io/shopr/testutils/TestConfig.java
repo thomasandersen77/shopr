@@ -15,4 +15,9 @@ public class TestConfig {
         Objects.requireNonNull(emf, "EntityManagerFactory bean must be set");
         return new TestdataManager(emf);
     }
+
+    @Bean
+    public TestBeanDefinitionRegistryPostProcessor postProcessor(){
+        return new TestBeanDefinitionRegistryPostProcessor();
+    }
 }
