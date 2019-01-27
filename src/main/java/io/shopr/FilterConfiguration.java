@@ -10,15 +10,13 @@ import javax.servlet.Filter;
 
 @Configuration
 public class FilterConfiguration {
-    @Autowired
-    RequestLoggingFilter requestLoggingFilter;
 
-    @Bean
-    public FilterRegistrationBean filterRegistrationBean(){
+/*    @Bean
+    public FilterRegistrationBean filterRegistrationBean(@Autowired RequestLoggingFilter requestLoggingFilter){
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
 
         filterRegistrationBean.setFilter(requestLoggingFilter);
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
-    }
+    }*/
 }
