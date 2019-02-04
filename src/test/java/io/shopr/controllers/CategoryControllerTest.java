@@ -4,53 +4,45 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.shopr.controllers.transferobjects.CategoryRequestDto;
 import io.shopr.entities.Category;
-import io.shopr.testutils.TestConfig;
+import io.shopr.repositories.CategoryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = {TestConfig.class})
-@AutoConfigureMockMvc
-@AutoConfigureTestDatabase
-@AutoConfigureTestEntityManager
-@Transactional
+@WebMvcTest(controllers = CategoryController.class)
 public class CategoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private TestEntityManager em;
+
+    @MockBean
+    private CategoryRepository repository;
 
     @Test
     public void create_new_catgory() throws Exception {
+
+        Category category = new Category("test");
+        given(repository.save(any())).willReturn(category);
 
         mockMvc.perform(post("/category")
                         .content(toJson(new CategoryRequestDto("test")))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(content().json("{\"name\":\"test\"}", false))
+                .andExpect(content().json(toJson(category)))
                 .andReturn();
 
-        Category category = em.getEntityManager().createQuery("from Category where name = :name", Category.class)
-                .setParameter("name", "test")
-                .getSingleResult();
-        assertEquals("test", category.getName());
     }
 
     private <T> String toJson(T type) {
