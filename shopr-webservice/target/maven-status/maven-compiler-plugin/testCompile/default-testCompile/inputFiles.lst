@@ -1,0 +1,9 @@
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/entities/ShoppingListTest.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/ShoprApplicationTests.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/utils/ConfigurationTest.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/controllers/ProductControllerTest.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/testutils/TestdataManager.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/controllers/CategoryControllerTest.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/repositories/ProductRepositoryTest.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/testutils/TestConfig.java
+/home/thomas/git/shopr/shopr-webservice/src/test/java/io/shopr/testutils/CommitOnPersistTestdataAdvice.java
