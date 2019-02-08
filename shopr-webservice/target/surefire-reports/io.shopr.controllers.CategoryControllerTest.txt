@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: io.shopr.controllers.CategoryControllerTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.334 s - in io.shopr.controllers.CategoryControllerTest

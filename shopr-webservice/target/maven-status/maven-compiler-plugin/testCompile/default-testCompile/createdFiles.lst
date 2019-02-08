@@ -1,9 +1,0 @@
-io/shopr/controllers/ProductControllerTest.class
-io/shopr/utils/ConfigurationTest.class
-io/shopr/testutils/TestdataManager.class
-io/shopr/repositories/ProductRepositoryTest.class
-io/shopr/entities/ShoppingListTest.class
-io/shopr/ShoprApplicationTests.class
-io/shopr/testutils/TestConfig.class
-io/shopr/testutils/CommitOnPersistTestdataAdvice.class
-io/shopr/controllers/CategoryControllerTest.class
