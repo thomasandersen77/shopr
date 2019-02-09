@@ -11,12 +11,12 @@ import javax.servlet.Filter;
 @Configuration
 public class FilterConfiguration {
 
-/*    @Bean
+    @Bean
     public FilterRegistrationBean filterRegistrationBean(@Autowired RequestLoggingFilter requestLoggingFilter){
         FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<>();
 
         filterRegistrationBean.setFilter(requestLoggingFilter);
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
-    }*/
+    }
 }

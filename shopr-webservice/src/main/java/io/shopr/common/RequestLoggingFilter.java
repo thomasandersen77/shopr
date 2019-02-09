@@ -13,14 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component
-@WebFilter(urlPatterns = "/*")
 public class RequestLoggingFilter extends OncePerRequestFilter {
     private static final Logger log = LoggerFactory.getLogger(RequestLoggingFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        if(shouldNotFilter(request))
+            return;
+
         log.info("****>> Incoming request. Method: [{}]. URI: [{}]" , request.getMethod(), request.getRequestURI());
-        filterChain.doFilter(request, response);
+        doFilter(request, response, filterChain);
         log.info("****<< Outgoing response. Status: {}, Content-type: {}", response.getStatus(), response.getHeader("Content-Type"));
     }
 }

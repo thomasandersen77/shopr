@@ -44,7 +44,7 @@ public class TestdataManager {
     public TestEntityManager getTestEntityManager() {
         return testEntityManager;
     }
-
+    
     @Transactional
     public EntityManager getEntityManager() {
         return testEntityManager.getEntityManager();

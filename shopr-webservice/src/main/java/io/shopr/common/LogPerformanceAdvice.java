@@ -1,4 +1,4 @@
-package io.shopr.util;
+package io.shopr.common;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
