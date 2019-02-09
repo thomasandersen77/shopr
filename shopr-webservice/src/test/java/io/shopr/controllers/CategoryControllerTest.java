@@ -34,7 +34,7 @@ public class CategoryControllerTest {
     @Test
     public void create_new_catgory() throws Exception {
 
-        Category category = new Category("test");
+        var category = new Category("test");
         given(repository.save(any())).willReturn(category);
 
         mockMvc.perform(post("/category")

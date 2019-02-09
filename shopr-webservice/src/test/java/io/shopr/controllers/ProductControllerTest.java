@@ -39,13 +39,15 @@ public class ProductControllerTest {
 
     @Test
     public void createProduct() {
-        ResponseEntity<Long> response = template.postForEntity("/product",
+        var response = template.postForEntity(
+                "/product",
                 new Product("Epler", 15.00, new Category("Frukt"), 6),
                 Long.class);
+
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().intValue() > 0L);
 
-        Product product = em.getEntityManager().find(Product.class, response.getBody());
+        var product = em.getEntityManager().find(Product.class, response.getBody());
         assertNotNull(product);
         assertEquals("Epler", product.getName());
     }
@@ -56,7 +58,7 @@ public class ProductControllerTest {
             em.persist(new Product());
         }
 
-        ResponseEntity<ProductListDto> response = template.getForEntity("/product", ProductListDto.class);
+        var response = template.getForEntity("/product", ProductListDto.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(50 <= Objects.requireNonNull(response.getBody()).getProducts().size());
     }
@@ -64,11 +66,11 @@ public class ProductControllerTest {
 
     @Test
     public void getProductById() {
-        Long id = em.persistAndFlush(new Product("test", 100, new Category("category"))).getId();
+        var id = em.persistAndFlush(new Product("test", 100, new Category("category"))).getId();
 
-        ResponseEntity<Product> response = template.getForEntity("/product/{id}", Product.class, id);
+        var response = template.getForEntity("/product/{id}", Product.class, id);
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        Product product = response.getBody();
+        var product = response.getBody();
         assertNotNull(product);
         assertEquals(product.getId().intValue(), id.intValue());
         assertEquals("test", product.getName());

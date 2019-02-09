@@ -21,7 +21,7 @@ public class ConfigurationTest {
         contextRunner
                 .withUserConfiguration(ShoprApplication.class)
                 .run((context) -> {
-                    TestdataManager manager = context.getBean(TestdataManager.class);
+                    var manager = context.getBean(TestdataManager.class);
                     assertThat(manager).isNotNull();
                     assertThat(manager.getEntityManager()).isNotNull();
                 });

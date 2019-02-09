@@ -21,20 +21,18 @@ public class ShoppingListTest {
 
     @Test
     public void update_timestamp_on_save() {
-        ShoppingList shoppingList = new ShoppingList();
+        var shoppingList = new ShoppingList();
         shoppingList.addProduct(new Product("test1", 1, new Category("cat1")));
         shoppingList.addProduct(new Product("test2", 2, new Category("cat2")));
         shoppingList.addProduct(new Product("test3", 3, new Category("cat3")));
 
         shoppingList = em.persistAndFlush(shoppingList);
-        ShoppingList shoppingListPersisted = em.find(ShoppingList.class, shoppingList.getId());
+        var shoppingListPersisted = em.find(ShoppingList.class, shoppingList.getId());
         assertEquals(shoppingListPersisted.getId(), shoppingList.getId());
 
         shoppingListPersisted.getProducts()
                 .stream()
                 .sorted(comparing(Product::getId))
-                .forEach(product -> {
-                    System.out.println(product);
-                });
+                .forEach(System.out::println);
     }
 }
