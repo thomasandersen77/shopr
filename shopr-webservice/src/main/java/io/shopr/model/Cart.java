@@ -1,4 +1,4 @@
-package io.shopr.entities;
+package io.shopr.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class ShoppingList {
+public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +23,10 @@ public class ShoppingList {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<>();
 
-    public ShoppingList() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Customer customer;
+
+    public Cart() {
         this.createdDate = LocalDateTime.now();
         this.updateTimestamp = new Date();
     }
@@ -56,5 +59,13 @@ public class ShoppingList {
 
     public Long getId() {
         return id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

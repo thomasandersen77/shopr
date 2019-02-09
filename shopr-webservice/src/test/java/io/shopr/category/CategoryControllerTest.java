@@ -1,11 +1,12 @@
-package io.shopr.controllers;
+package io.shopr.category;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.shopr.category.dto.CategoryRequestDto;
+import io.shopr.common.ShoprException;
 import io.shopr.common.ResponsStatusExceptionAdvice;
-import io.shopr.controllers.transferobjects.CategoryRequestDto;
-import io.shopr.entities.Category;
-import io.shopr.repositories.CategoryRepository;
+import io.shopr.model.Category;
+import io.shopr.product.exceptions.CreateProductExcepion;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,23 +39,21 @@ public class CategoryControllerTest {
         given(repository.save(any())).willReturn(category);
 
         mockMvc.perform(post("/category")
-                        .content(toJson(new CategoryRequestDto("test")))
-                        .contentType(MediaType.APPLICATION_JSON))
+                .content(toJson(new CategoryRequestDto("test")))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(content().json(toJson(category)))
-                .andReturn();
+                .andExpect(content().json(toJson(category)));
+
         verify(repository, times(1)).save(any());
     }
 
     @Test(expected = NestedServletException.class)
     public void create_will_throw_server_error() throws Exception {
-        given(repository.save(any())).willThrow(new RuntimeException("Could not connect to database"));
+        given(repository.save(any())).willThrow(new CreateProductExcepion("Could not connect to database", ShoprException.Type.SERVER_ERROR));
 
         mockMvc.perform(post("/category")
                 .content(toJson(new CategoryRequestDto("test")))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError())
-                .andReturn();
+                .contentType(MediaType.APPLICATION_JSON));
     }
 
     private <T> String toJson(T type) {

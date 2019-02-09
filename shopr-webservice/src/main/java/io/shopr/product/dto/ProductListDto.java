@@ -1,6 +1,6 @@
-package io.shopr.controllers.transferobjects;
+package io.shopr.product.dto;
 
-import io.shopr.entities.Product;
+import io.shopr.model.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

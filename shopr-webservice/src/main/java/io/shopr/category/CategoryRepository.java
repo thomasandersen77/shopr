@@ -1,6 +1,6 @@
-package io.shopr.repositories;
+package io.shopr.category;
 
-import io.shopr.entities.Category;
+import io.shopr.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

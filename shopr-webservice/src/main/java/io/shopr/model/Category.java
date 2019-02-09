@@ -1,4 +1,4 @@
-package io.shopr.entities;
+package io.shopr.model;
 
 import javax.persistence.*;
 

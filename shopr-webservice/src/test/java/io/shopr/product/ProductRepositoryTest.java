@@ -1,7 +1,10 @@
-package io.shopr.repositories;
+package io.shopr.product;
 
-import io.shopr.entities.Category;
-import io.shopr.entities.Product;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.shopr.model.Category;
+import io.shopr.model.Product;
+import io.shopr.product.ProductRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +21,7 @@ public class ProductRepositoryTest {
     ProductRepository repository;
 
     @Test
-    public void saveCategoryAndProduct() {
+    public void saveCategoryAndProduct() throws JsonProcessingException {
         Product product = new Product();
         product.setName("car");
         product.setCategory(new Category("AUTOMOBILES"));
@@ -31,5 +34,6 @@ public class ProductRepositoryTest {
         assertNotNull(product);
         assertEquals("car", product.getName());
         assertEquals(98.90, product.getPrice(), 0);
+        System.err.println( new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(product) );
     }
 }

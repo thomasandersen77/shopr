@@ -1,8 +1,7 @@
-package io.shopr.controllers;
+package io.shopr.category;
 
-import io.shopr.controllers.transferobjects.CategoryRequestDto;
-import io.shopr.entities.Category;
-import io.shopr.repositories.CategoryRepository;
+import io.shopr.category.dto.CategoryRequestDto;
+import io.shopr.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

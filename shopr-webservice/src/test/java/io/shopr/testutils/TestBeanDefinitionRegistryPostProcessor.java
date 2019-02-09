@@ -1,15 +1,13 @@
 package io.shopr.testutils;
 
-import io.shopr.controllers.CategoryController;
+import io.shopr.category.CategoryController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.beans.factory.support.RootBeanDefinition;
-import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
 import java.util.stream.Stream;
@@ -22,7 +20,7 @@ public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRe
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         if(registry instanceof ConfigurableListableBeanFactory) {
             registry.removeBeanDefinition("categoryController");
-            RootBeanDefinition beanDefinition = new RootBeanDefinition(CategoryController.class);
+            var beanDefinition = new RootBeanDefinition(CategoryController.class);
             beanDefinition.setPrimary(true);
             beanDefinition.setAutowireCandidate(true);
             registry.registerBeanDefinition("categoryController", beanDefinition);

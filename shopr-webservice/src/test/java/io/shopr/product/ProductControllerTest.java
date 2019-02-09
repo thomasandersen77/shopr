@@ -1,21 +1,17 @@
-package io.shopr.controllers;
+package io.shopr.product;
 
 import io.shopr.ShoprApplication;
-import io.shopr.controllers.transferobjects.ProductListDto;
-import io.shopr.entities.Category;
-import io.shopr.entities.Product;
+import io.shopr.product.dto.ProductListDto;
+import io.shopr.model.Category;
+import io.shopr.model.Product;
 import io.shopr.testutils.TestConfig;
 import io.shopr.testutils.TestdataManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
