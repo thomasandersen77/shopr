@@ -29,7 +29,7 @@ public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRe
         }
         Stream.of(registry.getBeanDefinitionNames())
                 .sorted(Comparator.naturalOrder())
-                .forEach(action -> log.info(">>>> bean: [{}]", action));
+                .forEach(action -> log.trace(">>>> bean: [{}]", action));
     }
 
     @Override

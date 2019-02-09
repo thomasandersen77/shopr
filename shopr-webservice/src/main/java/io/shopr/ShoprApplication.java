@@ -13,6 +13,7 @@ import static java.util.stream.Stream.of;
 @ServletComponentScan
 public class ShoprApplication {
 	private static final Logger log = LoggerFactory.getLogger(ShoprApplication.class);
+
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(ShoprApplication.class, args);
 		of(context.getEnvironment().getActiveProfiles())

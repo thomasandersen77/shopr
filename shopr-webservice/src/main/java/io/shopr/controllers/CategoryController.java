@@ -20,7 +20,11 @@ public class CategoryController {
 
     @PostMapping("category")
     public ResponseEntity<Category> createCategory(@RequestBody CategoryRequestDto request) {
-        Category category = categoryRepository.save(new Category(request.getName()));
-        return new ResponseEntity<>(category, HttpStatus.OK);
+        try {
+            Category category = categoryRepository.save(new Category(request.getName()));
+            return new ResponseEntity<>(category, HttpStatus.OK);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
