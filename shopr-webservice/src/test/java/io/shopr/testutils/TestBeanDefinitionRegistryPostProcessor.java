@@ -1,6 +1,8 @@
 package io.shopr.testutils;
 
 import io.shopr.controllers.CategoryController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
@@ -14,6 +16,8 @@ import java.util.stream.Stream;
 
 //@Component
 public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
+    private static final Logger log = LoggerFactory.getLogger(TestBeanDefinitionRegistryPostProcessor.class);
+
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         if(registry instanceof ConfigurableListableBeanFactory) {
@@ -25,7 +29,7 @@ public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRe
         }
         Stream.of(registry.getBeanDefinitionNames())
                 .sorted(Comparator.naturalOrder())
-                .forEach(System.err::println);
+                .forEach(action -> log.info(">>>> bean: [{}]", action));
     }
 
     @Override
