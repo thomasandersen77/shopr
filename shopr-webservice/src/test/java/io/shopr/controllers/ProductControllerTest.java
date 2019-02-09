@@ -6,12 +6,16 @@ import io.shopr.entities.Category;
 import io.shopr.entities.Product;
 import io.shopr.testutils.TestConfig;
 import io.shopr.testutils.TestdataManager;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestEntityManager;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -19,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.Objects;
 
 import static org.junit.Assert.*;
@@ -32,10 +37,14 @@ import static org.junit.Assert.*;
 @Transactional
 public class ProductControllerTest {
 
-    @Autowired
-    TestRestTemplate template;
-    @Autowired
-    TestdataManager em;
+    @Autowired TestRestTemplate template;
+    @Autowired EntityManagerFactory entityManagerFactory;
+    private TestEntityManager em;
+
+    @Before
+    public void configure() {
+        em = new TestEntityManager(entityManagerFactory);
+    }
 
     @Test
     public void createProduct() {
@@ -45,6 +54,7 @@ public class ProductControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(response.getBody() != null && response.getBody().intValue() > 0L);
 
+
         Product product = em.getEntityManager().find(Product.class, response.getBody());
         assertNotNull(product);
         assertEquals("Epler", product.getName());
@@ -53,9 +63,11 @@ public class ProductControllerTest {
     @Test
     public void getProductList() {
         for (int i = 0; i < 50; i++) {
+            //em.getEntityManager().getTransaction().begin();
             em.persist(new Product());
-        }
 
+        }
+        em.getEntityManager().getTransaction().commit();
         ResponseEntity<ProductListDto> response = template.getForEntity("/product", ProductListDto.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertTrue(50 <= Objects.requireNonNull(response.getBody()).getProducts().size());

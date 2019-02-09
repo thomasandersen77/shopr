@@ -1,6 +1,5 @@
-package io.shopr.utils;
+package io.shopr;
 
-import io.shopr.ShoprApplication;
 import io.shopr.testutils.TestConfig;
 import io.shopr.testutils.TestdataManager;
 import org.junit.Test;

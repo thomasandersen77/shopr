@@ -23,7 +23,7 @@ public class CommitOnPersistTestdataAdvice {
         this.testdataManager = testdataManager;
     }
 
-    @Around("execution(* io.shopr.testutils.TestdataManager.*(..)) && !execution(* io.shopr.testutils.TestdataManager.get*(..)))")
+    @Around("execution(* org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager.*(..)) ")
     public Object commitOnPersist(ProceedingJoinPoint pjp){
         try {
             EntityTransaction transaction = testdataManager.getEntityManager().getTransaction();
