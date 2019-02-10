@@ -3,7 +3,7 @@ package io.shopr.utils;
 import io.shopr.ShoprApplication;
 import io.shopr.repositories.testutils.TestdataManager;
 import io.shopr.testutils.TestConfig;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.AutoConfigurations;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;

@@ -4,9 +4,8 @@ import io.shopr.repositories.api.CartRepository;
 import io.shopr.repositories.domain.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 public class CartController {
@@ -17,8 +16,8 @@ public class CartController {
         this.repository = repository;
     }
 
-    @GetMapping
-    public Cart getCart(@PathParam("{id}") Long id) {
+    @GetMapping("{id} ")
+    public Cart getCart(@PathVariable("id") Long id) {
         return repository.getOne(id);
     }
 }

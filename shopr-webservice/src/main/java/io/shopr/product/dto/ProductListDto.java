@@ -8,9 +8,18 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ProductListDto {
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
+
+    protected ProductListDto(){
+        this.products = new ArrayList<>();
+    }
+
+    public ProductListDto(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
 }

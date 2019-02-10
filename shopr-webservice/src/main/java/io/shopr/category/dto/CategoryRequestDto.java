@@ -1,15 +1,26 @@
 package io.shopr.category.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
 import javax.validation.constraints.NotBlank;
 
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
 public class CategoryRequestDto {
     @NotBlank
     private String name;
+
+    private CategoryRequestDto() {
+    }
+
+    public CategoryRequestDto(@NotBlank String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "CategoryRequestDto{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
