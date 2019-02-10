@@ -1,0 +1,26 @@
+module io.shopr.webservice {
+    requires io.shopr.repositories;
+    requires slf4j.api;
+    requires spring.context;
+    requires spring.core;
+    requires spring.web;
+    requires tomcat.embed.core;
+    requires java.validation;
+    requires spring.beans;
+    requires org.aspectj.weaver;
+    requires spring.boot.autoconfigure;
+    requires spring.boot;
+    requires spring.tx;
+    requires java.sql;
+
+    exports io.shopr
+            to spring.boot.devtools;
+    exports io.shopr.configuration
+            to spring.beans,
+               spring.context;
+    exports io.shopr.common to spring.beans;
+
+    opens io.shopr to spring.core;
+    opens io.shopr.configuration to spring.core;
+    opens io.shopr.product to spring.core;
+}

@@ -1,0 +1,144 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: sa
+
+  - changeSet:
+      id: 1
+      author: andersen
+      changes:
+        - createTable:
+            tableName: customer
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: firstname
+                  type: varchar(50)
+              - column:
+                  name: lastname
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: customer_number
+                  type: varchar(10)
+              - column:
+                  name: birth_date
+                  type: date
+        ## category
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    - nullable: false
+        ## product table
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: price
+                  type: number
+                  constraints:
+                    nullable: false
+              - column:
+                  name: number_of_items
+                  type: number
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: int
+        - createTable:
+            tableName: cart
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: datetime
+                  constraints:
+                    - nullable: false
+              - column:
+                  name: update_timestamp
+                  type: timestamp
+                  constraints:
+                    nullable: true
+              - column:
+                  name: customer_id
+                  type: int
+                  constraints:
+                    nullable: true
+              - column:
+                  name: product_id
+                  type: int
+                  constraints:
+                    nulllable: true
+        - createTable:
+            tableName: cart_products
+            columns:
+              - column:
+                  name: cart_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: products_id
+                  type: int
+                  constraints:
+                    - nullable: false
+
+
+#  - changeSet:
+#      id: 2
+#      author: nvoxland
+#      changes:
+#        - addColumn:
+#            tableName: person
+#            columns:
+#              - column:
+#                  name: username
+#                  type: varchar(8)
+#
+#  - changeSet:
+#      id: 3
+#      author: nvoxland
+#      changes:
+#        - addLookupTable:
+#            existingTableName: person
+#            existingColumnName:state
+#            newTableName: state
+#            newColumnName: id
+#            newColumnDataType: char(2)
