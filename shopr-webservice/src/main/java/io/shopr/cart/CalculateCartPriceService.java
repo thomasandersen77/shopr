@@ -1,6 +1,7 @@
 package io.shopr.cart;
 
-import io.shopr.model.Customer;
+import io.shopr.repositories.api.CartRepository;
+import io.shopr.repositories.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class CalculateCartPriceService {
         this.cartRepository = cartRepository;
     }
 
-    public double getCartTotal(Customer customer){
+    public double getCartTotal(Customer customer) {
         return cartRepository.findByCustomer(customer)
                 .getProducts().stream()
                 .map((var p) -> p.getPrice() * p.getNumberOfItems())

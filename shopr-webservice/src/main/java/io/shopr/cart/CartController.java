@@ -1,6 +1,7 @@
 package io.shopr.cart;
 
-import io.shopr.model.Cart;
+import io.shopr.repositories.api.CartRepository;
+import io.shopr.repositories.domain.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,6 @@ public class CartController {
 
     @GetMapping
     public Cart getCart(@PathParam("{id}") Long id) {
-        Cart cart = repository.getOne(id);
-        return cart;
+        return repository.getOne(id);
     }
 }

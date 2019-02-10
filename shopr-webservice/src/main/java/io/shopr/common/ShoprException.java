@@ -2,11 +2,8 @@ package io.shopr.common;
 
 public class ShoprException extends RuntimeException {
 
-    private final Type type;
-
-    public ShoprException(String message, Type type) {
+    public ShoprException(String message) {
         super(message);
-        this.type = type;
     }
 
     @Override
@@ -14,12 +11,4 @@ public class ShoprException extends RuntimeException {
         return super.getMessage();
     }
 
-    public Type getType() {
-        return type;
-    }
-
-    public enum Type {
-        SERVER_ERROR,
-        CLIENT_ERROR
-    }
 }

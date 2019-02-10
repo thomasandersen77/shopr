@@ -19,20 +19,16 @@ public class RequestLoggingFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        if(shouldNotFilter(request))
+        if (shouldNotFilter(request))
             return;
         StopWatch stopWatch = new StopWatch(UUID.randomUUID().toString());
         stopWatch.start(Thread.currentThread().getName());
         doFilter(request, response, filterChain);
         stopWatch.stop();
-        log.info(";; Processed [{}] in [{}] millis for URI: [{}] - (taskname = {})",
+        log.info("::> Request Processed [{}] in [{}] millis for URI: [{}] - (taskname = {})",
                 request.getMethod(),
                 stopWatch.getLastTaskTimeMillis(),
                 request.getRequestURI(),
                 stopWatch.getLastTaskName());
-
-/*        log.info("****>> Incoming request. Method: [{}]. URI: [{}]" , request.getMethod(), request.getRequestURI());
-        doFilter(request, response, filterChain);
-        log.info("****<< Outgoing response. Status: {}, Content-type: {}", response.getStatus(), response.getHeader("Content-Type"));*/
     }
 }

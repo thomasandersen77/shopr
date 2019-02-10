@@ -15,6 +15,7 @@
 
     <modules>
         <module>shopr-webservice</module>
+        <module>shopr-repository</module>
     </modules>
 
     <properties>

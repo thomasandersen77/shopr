@@ -1,4 +1,4 @@
-package io.shopr.model;
+package io.shopr.repositories.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ public class Customer {
         this.birthDate = birthDate;
     }
 
-    public int getAge(){
+    public int getAge() {
         return Period.between(birthDate, LocalDate.now()).getYears();
     }
 

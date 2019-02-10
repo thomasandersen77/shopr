@@ -1,4 +1,4 @@
-package io.shopr.testutils;
+package io.shopr.repositories.testutils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,11 +23,11 @@ public class CommitOnPersistTestdataAdvice {
         this.testdataManager = testdataManager;
     }
 
-    @Around("execution(* io.shopr.testutils.TestdataManager.persist*(..)) && !execution(* io.shopr.testutils.TestdataManager.get*(..))")
-    public Object commitOnPersist(ProceedingJoinPoint pjp){
+    @Around("execution(* io.shopr.repositories.testutils.TestdataManager.persist*(..)) && !execution(* io.shopr.repositories.testutils.TestdataManager.get*(..))")
+    public Object commitOnPersist(ProceedingJoinPoint pjp) {
         try {
             EntityTransaction transaction = testdataManager.getEntityManager().getTransaction();
-            if(!transaction.isActive())
+            if (!transaction.isActive())
                 transaction.begin();
             Object retVal = pjp.proceed(pjp.getArgs());
             log.info(":::> Commit testdata for target : [{}]. Arguments: [{}]",

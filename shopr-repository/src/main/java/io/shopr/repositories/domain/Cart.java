@@ -1,4 +1,4 @@
-package io.shopr.model;
+package io.shopr.repositories.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,7 +32,7 @@ public class Cart {
     }
 
     @PrePersist
-    public void onPersist(){
+    public void onPersist() {
         this.createdDate = LocalDateTime.now();
     }
 

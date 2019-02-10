@@ -12,13 +12,12 @@ import org.springframework.beans.factory.support.RootBeanDefinition;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-//@Component
 public class TestBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
     private static final Logger log = LoggerFactory.getLogger(TestBeanDefinitionRegistryPostProcessor.class);
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        if(registry instanceof ConfigurableListableBeanFactory) {
+        if (registry instanceof ConfigurableListableBeanFactory) {
             registry.removeBeanDefinition("categoryController");
             var beanDefinition = new RootBeanDefinition(CategoryController.class);
             beanDefinition.setPrimary(true);

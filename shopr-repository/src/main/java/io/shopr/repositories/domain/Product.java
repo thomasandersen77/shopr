@@ -1,4 +1,5 @@
-package io.shopr.model;
+package io.shopr.repositories.domain;
+
 
 import lombok.ToString;
 

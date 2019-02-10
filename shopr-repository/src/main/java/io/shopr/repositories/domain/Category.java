@@ -1,4 +1,4 @@
-package io.shopr.model;
+package io.shopr.repositories.domain;
 
 import javax.persistence.*;
 
@@ -7,6 +7,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column
     private String name;
 

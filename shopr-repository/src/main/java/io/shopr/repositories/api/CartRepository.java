@@ -1,7 +1,7 @@
-package io.shopr.cart;
+package io.shopr.repositories.api;
 
-import io.shopr.model.Cart;
-import io.shopr.model.Customer;
+import io.shopr.repositories.domain.Cart;
+import io.shopr.repositories.domain.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
