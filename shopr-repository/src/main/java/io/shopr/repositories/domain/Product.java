@@ -1,12 +1,9 @@
 package io.shopr.repositories.domain;
 
 
-import lombok.ToString;
-
 import javax.persistence.*;
 
 @Entity
-@ToString
 public class Product {
 
     @Id
@@ -33,6 +30,7 @@ public class Product {
         this.name = name;
         this.price = price;
         this.category = category;
+        this.numberOfItems = 1;
     }
 
     public Product(String name, double price, Category category, Integer numberOfItems) {

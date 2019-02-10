@@ -26,8 +26,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: customerNumber
+                  name: customer_number
                   type: varchar(10)
+              - column:
+                  name: birth_date
+                  type: date
         ## category
         - createTable:
             tableName: category
@@ -69,7 +72,7 @@ databaseChangeLog:
                   name: number_of_items
                   type: number
                   constraints:
-                    nullable: true
+                    nullable: false
               - column:
                   name: category_id
                   type: int

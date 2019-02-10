@@ -1,9 +1,8 @@
+import io.shopr.repositories.internals.TestdataManagerImpl;
 import io.shopr.repositories.testutils.TestdataManager;
-import io.shopr.repositories.testutils.internal.TestdataManagerImpl;
 
-module io.shopr.repositories{
+module io.shopr.repositories {
     requires java.persistence;
-    requires lombok;
     requires spring.tx;
     requires spring.data.jpa;
     requires spring.boot.autoconfigure;
@@ -18,4 +17,7 @@ module io.shopr.repositories{
     exports io.shopr.repositories.api;
     exports io.shopr.repositories.domain;
     exports io.shopr.repositories.testutils;
+
+
+    opens io.shopr.repositories to spring.core;
 }

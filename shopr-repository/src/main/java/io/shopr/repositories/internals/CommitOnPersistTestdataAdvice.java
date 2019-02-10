@@ -1,4 +1,4 @@
-package io.shopr.repositories.testutils.internal;
+package io.shopr.repositories.internals;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -23,7 +23,7 @@ public class CommitOnPersistTestdataAdvice {
         this.testdataManager = testdataManager;
     }
 
-    @Around("execution(* io.shopr.repositories.testutils.internal.TestdataManagerImpl.persist*(..)) && !execution(* io.shopr.repositories.testutils.internal.TestdataManagerImpl.get*(..))")
+    @Around("execution(* io.shopr.repositories.internals.TestdataManagerImpl.persist*(..)) && !execution(* io.shopr.repositories.internals.TestdataManagerImpl.get*(..))")
     public Object commitOnPersist(ProceedingJoinPoint pjp) {
         try {
             EntityTransaction transaction = testdataManager.getEntityManager().getTransaction();

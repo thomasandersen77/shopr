@@ -28,11 +28,12 @@ public class ProductRepositoryTest {
         product.setName("car");
         product.setCategory(new Category("AUTOMOBILES"));
         product.setPrice(98.90);
+        product.setNumberOfItems(10);
         product = repository.save(product);
         assertTrue(repository.save(product).getId() > 0);
-        assertTrue(repository.save(new Product("PC", 98.90, new Category(""))).getId() > 1);
-        assertTrue(repository.save(new Product("PC", 98.90, new Category(""))).getId() > 2);
-        assertTrue(repository.save(new Product("PC", 98.90, new Category(""))).getId() > 3);
+        assertTrue(repository.save(new Product("PC", 98.90, new Category(""), 1)).getId() > 1);
+        assertTrue(repository.save(new Product("PC", 98.90, new Category(""), 1)).getId() > 2);
+        assertTrue(repository.save(new Product("PC", 98.90, new Category(""), 1)).getId() > 3);
         assertNotNull(product);
         assertEquals("car", product.getName());
         assertEquals(98.90, product.getPrice(), 0);

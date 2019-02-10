@@ -1,4 +1,4 @@
-package io.shopr.repositories.testutils.internal;
+package io.shopr.repositories.internals;
 
 import io.shopr.repositories.testutils.TestdataManager;
 import org.springframework.beans.factory.annotation.Autowired;
