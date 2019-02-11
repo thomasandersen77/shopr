@@ -16,7 +16,7 @@ public class CartController {
         this.repository = repository;
     }
 
-    @GetMapping("{id} ")
+    @GetMapping("{id}")
     public Cart getCart(@PathVariable("id") Long id) {
         return repository.getOne(id);
     }
