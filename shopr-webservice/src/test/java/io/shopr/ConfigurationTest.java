@@ -1,6 +1,5 @@
-package io.shopr.utils;
+package io.shopr;
 
-import io.shopr.ShoprApplication;
 import io.shopr.repositories.testutils.TestdataManager;
 import io.shopr.testutils.TestConfig;
 import org.junit.jupiter.api.Test;
