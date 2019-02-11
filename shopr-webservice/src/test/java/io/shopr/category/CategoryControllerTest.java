@@ -61,7 +61,7 @@ public class CategoryControllerTest {
                 .andReturn();
         Exception resolvedException = result.getResolvedException();
         assertThat(resolvedException).isExactlyInstanceOf(ResponseStatusException.class);
-        assertThat(resolvedException.getMessage()).contains("Could not connect to database");
+        assertThat(resolvedException != null ? resolvedException.getMessage() : null).contains("Could not connect to database");
 
         //.andExpect();
         //);
