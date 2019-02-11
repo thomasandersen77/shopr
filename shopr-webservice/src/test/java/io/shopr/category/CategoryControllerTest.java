@@ -2,7 +2,8 @@ package io.shopr.category;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.shopr.category.dto.CategoryRequestDto;
+import io.shopr.dto.CategoryRequestDto;
+import io.shopr.controllers.CategoryController;
 import io.shopr.repositories.api.CategoryRepository;
 import io.shopr.repositories.domain.Category;
 import org.junit.jupiter.api.Test;
@@ -60,7 +61,7 @@ public class CategoryControllerTest {
                 .andReturn();
         Exception resolvedException = result.getResolvedException();
         assertThat(resolvedException).isExactlyInstanceOf(ResponseStatusException.class);
-        assertThat(resolvedException.getMessage()).contains("Could not connect to database");
+        assertThat(resolvedException != null ? resolvedException.getMessage() : null).contains("Could not connect to database");
 
         //.andExpect();
         //);

@@ -1,4 +1,4 @@
-package io.shopr.product.dto;
+package io.shopr.dto;
 
 import io.shopr.repositories.domain.Product;
 

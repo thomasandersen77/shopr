@@ -1,4 +1,4 @@
-package io.shopr.cart;
+package io.shopr.service;
 
 import io.shopr.repositories.api.CartRepository;
 import io.shopr.repositories.api.CustomerRepository;
@@ -6,7 +6,6 @@ import io.shopr.repositories.domain.Cart;
 import io.shopr.repositories.domain.Category;
 import io.shopr.repositories.domain.Customer;
 import io.shopr.repositories.domain.Product;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

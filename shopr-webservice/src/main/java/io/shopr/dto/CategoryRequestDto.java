@@ -1,4 +1,4 @@
-package io.shopr.category.dto;
+package io.shopr.dto;
 
 import javax.validation.constraints.NotBlank;
 

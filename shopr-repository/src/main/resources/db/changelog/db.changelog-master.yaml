@@ -1,7 +1,10 @@
 databaseChangeLog:
   - preConditions:
-      - runningAs:
-          username: sa
+      - or:
+        - dbms:
+            type: h2
+        - dbms:
+            type: postgresql
 
   - changeSet:
       id: 1

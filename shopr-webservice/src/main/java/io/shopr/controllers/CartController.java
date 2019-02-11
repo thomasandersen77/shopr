@@ -1,4 +1,4 @@
-package io.shopr.cart;
+package io.shopr.controllers;
 
 import io.shopr.repositories.api.CartRepository;
 import io.shopr.repositories.domain.Cart;
@@ -16,7 +16,7 @@ public class CartController {
         this.repository = repository;
     }
 
-    @GetMapping("{id} ")
+    @GetMapping("{id}")
     public Cart getCart(@PathVariable("id") Long id) {
         return repository.getOne(id);
     }

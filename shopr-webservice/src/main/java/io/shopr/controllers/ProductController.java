@@ -1,6 +1,6 @@
-package io.shopr.product;
+package io.shopr.controllers;
 
-import io.shopr.product.dto.ProductListDto;
+import io.shopr.dto.ProductListDto;
 import io.shopr.repositories.api.ProductRepository;
 import io.shopr.repositories.domain.Product;
 import org.slf4j.Logger;

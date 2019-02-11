@@ -1,4 +1,4 @@
-package io.shopr.cart;
+package io.shopr.service;
 
 import io.shopr.repositories.api.CartRepository;
 import io.shopr.repositories.domain.Customer;

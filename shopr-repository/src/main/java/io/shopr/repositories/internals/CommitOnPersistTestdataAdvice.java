@@ -23,7 +23,7 @@ public class CommitOnPersistTestdataAdvice {
         this.testdataManager = testdataManager;
     }
 
-    @Around("execution(* io.shopr.repositories.internals.TestdataManagerImpl.persist*(..)) && !execution(* io.shopr.repositories.internals.TestdataManagerImpl.get*(..))")
+    @Around("execution(* io.shopr.repositories.testutils.TestdataManager.persist*(..)) && !execution(* io.shopr.repositories.testutils.TestdataManager.get*(..))")
     public Object commitOnPersist(ProceedingJoinPoint pjp) {
         try {
             EntityTransaction transaction = testdataManager.getEntityManager().getTransaction();
