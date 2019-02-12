@@ -1,6 +1,8 @@
 package io.shopr.configuration;
 
 import io.shopr.common.RequestLoggingFilter;
+import io.shopr.repositories.EnableRepositories;
+import io.shopr.repositories.api.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +20,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity(debug = true)
+@EnableRepositories
 public class WebConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    CartRepository cartRepository;
 
     public WebConfiguration() {
     }
