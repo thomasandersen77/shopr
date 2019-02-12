@@ -43,7 +43,7 @@ public class CategoryControllerTest {
         mockMvc.perform(post("/category")
                 .content(toJson(new CategoryRequestDto("")))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is2xxSuccessful())
+                .andExpect(status().is4xxClientError())
                 .andExpect(content().json(toJson(category)));
 
         verify(repository, times(1)).save(any());
@@ -57,7 +57,7 @@ public class CategoryControllerTest {
         MvcResult result = mockMvc.perform(post("/category")
                 .content(toJson(new CategoryRequestDto("test")))
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is5xxServerError())
+                .andExpect(status().is4xxClientError())
                 .andReturn();
         Exception resolvedException = result.getResolvedException();
         assertThat(resolvedException).isExactlyInstanceOf(ResponseStatusException.class);

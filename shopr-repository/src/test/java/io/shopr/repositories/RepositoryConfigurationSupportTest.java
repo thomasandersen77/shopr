@@ -14,8 +14,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import static org.junit.Assert.assertNotNull;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = RepositoryConfiguration.class)
-public class RepositoryConfigurationTest {
+@SpringBootTest(classes = RepositoryConfigurationSupport.class)
+public class RepositoryConfigurationSupportTest {
 
     @Autowired
     ApplicationContext context;

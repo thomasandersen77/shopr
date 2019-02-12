@@ -1,7 +1,5 @@
 package io.shopr.repositories;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.shopr.repositories.api.ProductRepository;
 import io.shopr.repositories.domain.Category;
 import io.shopr.repositories.domain.Product;
@@ -16,14 +14,15 @@ import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@ContextConfiguration(classes = RepositoryConfiguration.class)
+@EnableRepositorties(classes = RepositoryConfigurationSupport.class)
+@ContextConfiguration(classes = RepositoryConfigurationSupport.class)
 public class ProductRepositoryTest {
 
     @Autowired
     ProductRepository repository;
 
     @Test
-    public void saveCategoryAndProduct() throws JsonProcessingException {
+    public void saveCategoryAndProduct() {
         Product product = new Product();
         product.setName("car");
         product.setCategory(new Category("AUTOMOBILES"));

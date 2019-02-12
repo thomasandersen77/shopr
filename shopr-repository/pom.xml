@@ -18,6 +18,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+            <version>0.9.11</version>
+        </dependency>
+        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>5.4.1.Final</version>
@@ -66,7 +71,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test-autoconfigure</artifactId>
-            <!--<scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -81,5 +85,21 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.6.3</version>
+                <configuration>
+                    <propertyFileWillOverride>true</propertyFileWillOverride>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                    <changeLogFile>META-INF/migrations/db.changelog-master.xml</changeLogFile>
+                    <propertyFile>liquibase-update.properties</propertyFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

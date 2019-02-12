@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@ContextConfiguration(classes = RepositoryConfiguration.class)
+@ContextConfiguration(classes = RepositoryConfigurationSupport.class)
 public class CartRepositoryTest {
 
     @Autowired
@@ -25,11 +25,14 @@ public class CartRepositoryTest {
     @Test
     public void update_timestamp_on_save() {
         var cart = new Cart();
+        var updateTimestamp = cart.getUpdateTimestamp();
         cart.addProduct(new Product("test1", 1, new Category("cat1")));
         cart.addProduct(new Product("test2", 2, new Category("cat2")));
         cart.addProduct(new Product("test3", 3, new Category("cat3")));
 
         cart = em.persistAndFlush(cart);
+        assertThat(cart.getUpdateTimestamp()).isEqualByComparingTo(updateTimestamp);
+
         var cartPersisted = em.find(Cart.class, cart.getId());
         assertThat(cartPersisted.getId()).isEqualByComparingTo(cart.getId());
 
@@ -38,4 +41,5 @@ public class CartRepositoryTest {
                 .sorted(comparing(Product::getPrice))
                 .forEach(price -> assertThat(price.getPrice()).isBetween(1.0, 3.0));
     }
+
 }

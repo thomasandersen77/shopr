@@ -1,0 +1,45 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <include file="dbchangelog-master.yaml" />
+
+    <changeSet author="thomas" id="1549974519561-1">
+        <createTable tableName="authorities">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="thomas" id="1549974519561-2">
+        <createTable tableName="users">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="thomas" id="1549974519561-3">
+        <addPrimaryKey columnNames="username" constraintName="users_pkey" tableName="users"/>
+    </changeSet>
+    <changeSet author="thomas" id="1549974519561-4">
+        <createIndex indexName="ix_auth_username" tableName="authorities" unique="true">
+            <column name="username"/>
+            <column name="authority"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="thomas" id="1549974519561-5">
+        <addForeignKeyConstraint baseColumnNames="username" baseTableName="authorities"
+                                 constraintName="fk_authorities_users" deferrable="false" initiallyDeferred="false"
+                                 onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="username"
+                                 referencedTableName="users"/>
+    </changeSet>
+</databaseChangeLog>
