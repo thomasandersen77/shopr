@@ -53,7 +53,6 @@ public class CategoryControllerTest {
     public void create_will_throw_server_error() throws Exception {
         given(repository.save(any())).willThrow(new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Could not connect to database"));
 
-        //assertThrows(NestedServletException.class, () ->
         MvcResult result = mockMvc.perform(post("/category")
                 .content(toJson(new CategoryRequestDto("test")))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -62,9 +61,6 @@ public class CategoryControllerTest {
         Exception resolvedException = result.getResolvedException();
         assertThat(resolvedException).isExactlyInstanceOf(ResponseStatusException.class);
         assertThat(resolvedException != null ? resolvedException.getMessage() : null).contains("Could not connect to database");
-
-        //.andExpect();
-        //);
     }
 
     private <T> String toJson(T type) {

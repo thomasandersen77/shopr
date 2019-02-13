@@ -20,10 +20,10 @@
     </properties>
 
     <dependencies>
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.shopr</groupId>
             <artifactId>shopr-repository</artifactId>
@@ -86,12 +86,12 @@
             <artifactId>tomcat-embed-websocket</artifactId>
             <version>9.0.14</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <version>5.1.3.RELEASE</version>
             <scope>test</scope>
-        </dependency>
+        </dependency>-->
 
 
 

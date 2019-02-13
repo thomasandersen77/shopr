@@ -17,6 +17,7 @@ public class CalculateCartPriceService {
     public double getCartTotal(Customer customer) {
         return cartRepository.findByCustomer(customer)
                 .getProducts().stream()
+                .filter(p -> p.getNumberOfItems() != null)
                 .map((var p) -> p.getPrice() * p.getNumberOfItems())
                 .mapToDouble(Double::doubleValue)
                 .sum();
