@@ -52,6 +52,7 @@ public class TestdataManagerImpl implements TestdataManager {
         return testEntityManager.persistAndFlush(entity);
     }
 
+    @Transactional
     public TestEntityManager getTestEntityManager() {
         return testEntityManager;
     }

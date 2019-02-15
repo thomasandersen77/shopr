@@ -4,7 +4,7 @@ package io.shopr.repositories.domain;
 import javax.persistence.*;
 
 @Entity
-public class Product {
+public class Product extends AbstractEntity  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

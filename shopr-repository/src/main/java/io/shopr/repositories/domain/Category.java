@@ -3,7 +3,7 @@ package io.shopr.repositories.domain;
 import javax.persistence.*;
 
 @Entity
-public class Category {
+public class Category  extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -11,7 +11,7 @@ public class Category {
     @Column
     private String name;
 
-    private Category() {
+    public Category() {
 
     }
 

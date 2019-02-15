@@ -14,7 +14,10 @@ import java.util.List;
 
 @RestController
 public class CategoryController {
-    private final CategoryRepository categoryRepository;
+    private CategoryRepository categoryRepository;
+
+    public CategoryController() {
+    }
 
     @Autowired
     public CategoryController(CategoryRepository categoryRepository) {

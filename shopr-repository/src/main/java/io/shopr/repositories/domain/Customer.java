@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.Period;
 
 @Entity
-public class Customer {
+public class Customer extends AbstractEntity  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

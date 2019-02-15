@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+@EnableRepositories
 @Configuration
 public class TestConfig {
 

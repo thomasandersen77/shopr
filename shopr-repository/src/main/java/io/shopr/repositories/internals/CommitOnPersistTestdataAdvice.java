@@ -18,6 +18,9 @@ public class CommitOnPersistTestdataAdvice {
     private static final Logger log = LoggerFactory.getLogger(CommitOnPersistTestdataAdvice.class);
     private TestdataManagerImpl testdataManager;
 
+    public CommitOnPersistTestdataAdvice() {
+    }
+
     @Autowired
     public CommitOnPersistTestdataAdvice(TestdataManagerImpl testdataManager) {
         this.testdataManager = testdataManager;

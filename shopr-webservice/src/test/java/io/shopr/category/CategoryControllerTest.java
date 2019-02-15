@@ -24,30 +24,30 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = {CategoryController.class})
-public class CategoryControllerTest {
+    @ExtendWith(SpringExtension.class)
+    @WebMvcTest(controllers = {CategoryController.class})
+    public class CategoryControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @MockBean
-    private CategoryRepository repository;
+        @MockBean
+        private CategoryRepository repository;
 
-    @Test
-    public void create_new_catgory() throws Exception {
+        @Test
+        public void create_new_catgory() throws Exception {
 
-        var category = new Category("test");
-        given(repository.save(any())).willReturn(category);
+            var category = new Category("test");
+            given(repository.save(any())).willReturn(category);
 
-        mockMvc.perform(post("/category")
-                .content(toJson(new CategoryRequestDto("")))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is2xxSuccessful())
-                .andExpect(content().json(toJson(category)));
+            mockMvc.perform(post("/category")
+                    .content(toJson(new CategoryRequestDto("")))
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().is2xxSuccessful())
+                    .andExpect(content().json(toJson(category)));
 
-        verify(repository, times(1)).save(any());
-    }
+            verify(repository, times(1)).save(any());
+        }
 
     @Test
     public void create_will_throw_server_error() throws Exception {

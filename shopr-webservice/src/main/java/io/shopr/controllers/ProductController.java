@@ -14,7 +14,10 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 public class ProductController {
     private static final Logger log = LoggerFactory.getLogger(ProductController.class);
-    private final ProductRepository repository;
+    private ProductRepository repository;
+
+    public ProductController() {
+    }
 
     @Autowired
     public ProductController(ProductRepository repository) {

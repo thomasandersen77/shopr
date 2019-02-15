@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CartController {
-    private final CartRepository repository;
+    private CartRepository repository;
+
+    public CartController() {
+    }
 
     @Autowired
     public CartController(CartRepository repository) {

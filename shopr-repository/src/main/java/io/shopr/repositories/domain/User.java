@@ -1,10 +1,13 @@
 package io.shopr.repositories.domain;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Users")
-public class User {
+public class User extends AbstractEntity {
     @Id
     @GeneratedValue(strategy =   GenerationType.IDENTITY)
     private Long id;

@@ -5,14 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 @Configuration
-// @EnableWebSecurity(debug = true)
-public class WebConfiguration  /* extends WebSecurityConfigurerAdapter*/ {
-
-    public WebConfiguration() {
-    }
+public class WebConfiguration {
 
     @Bean
     public FilterRegistrationBean filterRegistrationBean(@Autowired RequestLoggingFilter requestLoggingFilter) {
@@ -20,10 +15,5 @@ public class WebConfiguration  /* extends WebSecurityConfigurerAdapter*/ {
         filterRegistrationBean.setFilter(requestLoggingFilter);
         filterRegistrationBean.addUrlPatterns("/*");
         return filterRegistrationBean;
-    }
-
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        return new PropertySourcesPlaceholderConfigurer();
     }
 }

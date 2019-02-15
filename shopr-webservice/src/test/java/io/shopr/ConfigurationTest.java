@@ -1,5 +1,6 @@
 package io.shopr;
 
+import io.shopr.repositories.RepositoryAutoConfiguration;
 import io.shopr.repositories.testutils.TestdataManager;
 import io.shopr.testutils.TestConfig;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class ConfigurationTest {
     @Test
     public void test_autoconfiguration_for_testdatamanager() {
         contextRunner
-                .withUserConfiguration(ShoprApplication.class)
+                .withUserConfiguration(RepositoryAutoConfiguration.class)
                 .run((context) -> {
                     var manager = context.getBean(TestdataManager.class);
                     assertThat(manager).isNotNull();

@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CustomerController {
-    final CustomerRepository repository;
+    CustomerRepository repository;
+
+    public CustomerController() {
+    }
 
     public CustomerController(CustomerRepository repository) {
         this.repository = repository;

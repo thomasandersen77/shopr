@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 public class CalculateCartPriceService {
     private CartRepository cartRepository;
 
+    public CalculateCartPriceService() {
+        System.out.println("CalculateCartPriceService");
+    }
+
     @Autowired
     public CalculateCartPriceService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
