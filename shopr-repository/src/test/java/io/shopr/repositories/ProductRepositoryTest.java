@@ -1,22 +1,22 @@
 package io.shopr.repositories;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.shopr.repositories.api.ProductRepository;
 import io.shopr.repositories.domain.Category;
 import io.shopr.repositories.domain.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.Assert.*;
 
 @ExtendWith(SpringExtension.class)
-@DataJpaTest
-@ContextConfiguration(classes = RepositoryConfiguration.class)
+@SpringBootTest(classes = ProductRepositoryTest.class)
+@EnableRepositories
+@Configuration
 public class ProductRepositoryTest {
 
     @Autowired

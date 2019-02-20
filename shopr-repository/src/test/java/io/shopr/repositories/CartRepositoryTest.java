@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@ContextConfiguration(classes = RepositoryConfiguration.class)
+@ContextConfiguration(classes = RepositoryAutoConfiguration.class)
 public class CartRepositoryTest {
 
     @Autowired

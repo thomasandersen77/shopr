@@ -1,0 +1,2 @@
+io.shopr.repositories.EnableRepositories=\
+io.shopr.repositories.RepositoryAutoConfiguration
